@@ -23,9 +23,11 @@ RUN uv sync
 
 EXPOSE 8000
 
+ENV PATH="/root/.local/bin:$PATH"
+
 CMD sh -c "supergateway \
-  --stdio 'uv run src/chess_mcp/main.py' \
-  --port ${PORT:-8000} \
+  --stdio '/root/.local/bin/uv run src/chess_mcp/main.py' \
+  --port ${PORT:-8080} \
   --baseUrl '' \
   --ssePath /sse \
   --messagePath /message"
