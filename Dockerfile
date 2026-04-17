@@ -21,6 +21,7 @@ RUN pip install mcp-proxy
 EXPOSE 8080
 
 CMD sh -c "mcp-proxy \
+  --host 0.0.0.0 \
   --port ${PORT:-8080} \
   --allow-origin '*' \
   -- /root/.local/bin/uv run src/chess_mcp/main.py"
