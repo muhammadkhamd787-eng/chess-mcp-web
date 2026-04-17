@@ -1,10 +1,7 @@
-FROM node:20-slim
+FROM python:3.12-slim
 
-# Install Python, pip, curl, git
+# Install curl and git
 RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
     curl \
     git \
     && rm -rf /var/lib/apt/lists/*
@@ -18,17 +15,12 @@ RUN git clone https://github.com/pab1it0/chess-mcp /app
 WORKDIR /app
 RUN uv sync
 
-# Install supergateway
-RUN npm install -g supergateway
+# Install mcp-proxy
+RUN pip install mcp-proxy
 
 EXPOSE 8080
 
-ENV PATH="/root/.local/bin:$PATH"
-
-CMD sh -c "supergateway \
-  --stdio '/root/.local/bin/uv run src/chess_mcp/main.py' \
+CMD sh -c "mcp-proxy \
   --port ${PORT:-8080} \
-  --baseUrl '' \
-  --ssePath /sse \
-  --messagePath /message \
-  --cors"
+  --allow-origin '*' \
+  -- /root/.local/bin/uv run src/chess_mcp/main.py"
