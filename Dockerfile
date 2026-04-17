@@ -13,8 +13,8 @@ RUN apt-get update && apt-get install -y \
 RUN curl -LsSf https://astral.sh/uv/install.sh | sh
 ENV PATH="/root/.local/bin:$PATH"
 
-# Install supergateway
-RUN npm install -g supergateway
+# Install supergateway (pinned to stable version)
+RUN npm install -g supergateway@0.0.22
 
 # Clone chess-mcp and install its dependencies
 RUN git clone https://github.com/pab1it0/chess-mcp /app
