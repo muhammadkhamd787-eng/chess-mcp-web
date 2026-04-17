@@ -19,7 +19,7 @@ WORKDIR /app
 RUN uv sync
 
 # Install supergateway
-RUN npm install -g supergateway@0.10.1
+RUN npm install -g supergateway
 
 EXPOSE 8080
 
@@ -30,4 +30,5 @@ CMD sh -c "supergateway \
   --port ${PORT:-8080} \
   --baseUrl '' \
   --ssePath /sse \
-  --messagePath /message"
+  --messagePath /message \
+  --cors"
