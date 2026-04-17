@@ -18,8 +18,8 @@ RUN git clone https://github.com/pab1it0/chess-mcp /app
 WORKDIR /app
 RUN uv sync
 
-# Install supergateway pinned version (must not be cached)
-RUN npm install -g supergateway@0.0.22
+# Install supergateway
+RUN npm install -g supergateway@0.10.1
 
 EXPOSE 8080
 
