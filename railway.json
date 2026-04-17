@@ -4,8 +4,6 @@
     "builder": "DOCKERFILE"
   },
   "deploy": {
-    "startCommand": null,
-    "healthcheckPath": "/sse",
     "restartPolicyType": "ON_FAILURE"
   }
 }
